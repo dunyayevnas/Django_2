@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+	Pupils list
+{% endblock %}
+
+{% block content %}
+	<h1>Pupils list</h1>
+    <form action="" method="get">
+        <label for="pupil">Name:</label>
+        <input type="text" name="pupil" placeholder="Insert name ...">
+        <input type="submit" value="Search">
+    </form>
+    <table class="table table-primary">
+        <tr>
+            <th>№</th>
+            <th>FULL NAME</th>
+            <th>AGE</th>
+            <th>ACTION</th>
+          
+            <hr>
+            <h1>Delete Name</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="product_name">Name:</label>
+        <input type="text" id="product_name" name="product_name" required>
+        <button type="submit">Delete</button>
+    </form>
+
+
+{#            <th>JANUARY</th>#}
+{#            <th>FEBRUARY</th>#}
+{#            <th>MARCH</th>#}
+{#            <th>APRIL</th>#}
+{#            <th>MAY</th>#}
+{#            <th>JUNE</th>#}
+        </tr>
+    {% for pupil in pupils %}
+    	<tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ pupil.name }}</td>
+            <td>{{ pupil.age }}</td>
+            <td>
+                <a href="{% url 'pupil_info' pupil.id %}">See all infos</a>
+            </td>
+{#            <td>{{ pupil.mark_1 }}</td>#}
+{#            <td>{{ pupil.mark_2 }}</td>#}
+{#            <td>{{ pupil.mark_3 }}</td>#}
+{#            <td>{{ pupil.mark_4 }}</td>#}
+{#            <td>{{ pupil.mark_5 }}</td>#}
+{#            <td>{{ pupil.mark_6 }}</td>#}
+        </tr>
+    {% endfor %}
+
+
+
+    </table>
+{% endblock %}
